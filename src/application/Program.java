@@ -27,7 +27,6 @@ public class Program {
         }
 
 
-
         System.out.println("\n=== TEST3: seller findAll =====");
         list = sellerDAO.findAll();
 

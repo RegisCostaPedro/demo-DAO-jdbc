@@ -2,6 +2,7 @@ package model.DAO.impl;
 
 import db.DB;
 import db.DbException;
+import db.DbIntegrityException;
 import model.DAO.SellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
@@ -20,7 +21,7 @@ public SellerDAOJDBC(Connection conn){
 }
     @Override
     public void insert(Seller obj) {
- PreparedStatement st = null;
+            PreparedStatement st = null;
          try {
              st = conn.prepareStatement(
                      "INSERT INTO seller " +
@@ -89,6 +90,7 @@ public SellerDAOJDBC(Connection conn){
 
     @Override
     public void deleteById(Integer id) {
+
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement(
@@ -100,7 +102,7 @@ public SellerDAOJDBC(Connection conn){
 
 
         }catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbIntegrityException(e.getMessage());
         }
         finally {
             DB.closeStatment(st);
